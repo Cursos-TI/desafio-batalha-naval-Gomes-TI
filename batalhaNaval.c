@@ -118,3 +118,63 @@ int main() {
 
     return 0;
 }
+
+#include <stdio.h>
+
+#define N 5 // tamanho fixo 5x5 para exibir habilidades
+
+// Função para exibir matriz
+void mostrarMatriz(int matriz[N][N]) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+int main() {
+    int cone[N][N] = {0};
+    int cruz[N][N] = {0};
+    int octaedro[N][N] = {0};
+
+    // ==== Padrão Cone ====
+    // Formato piramidal com base maior
+    for (int i = 0; i < N; i++) {
+        for (int j = N/2 - i; j <= N/2 + i; j++) {
+            if (j >= 0 && j < N)
+                cone[i][j] = 1;
+        }
+    }
+
+    // ==== Padrão Cruz ====
+    for (int i = 0; i < N; i++) {
+        cruz[i][N/2] = 1; // coluna central
+    }
+    for (int j = 0; j < N; j++) {
+        cruz[N/2][j] = 1; // linha central
+    }
+
+    // ==== Padrão Octaedro ====
+    int centro = N/2;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (abs(i - centro) + abs(j - centro) <= centro) {
+                octaedro[i][j] = 1;
+            }
+        }
+    }
+
+    // ==== Exibição das Matrizes ====
+    printf("Habilidade Cone:\n");
+    mostrarMatriz(cone);
+
+    printf("Habilidade Cruz:\n");
+    mostrarMatriz(cruz);
+
+    printf("Habilidade Octaedro:\n");
+    mostrarMatriz(octaedro);
+
+    return 0;
+}
