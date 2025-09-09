@@ -72,3 +72,49 @@ int main() {
     return 0;
 }
 }
+
+#include <stdio.h>
+
+int main() {
+    int linhas = 10, colunas = 10;
+    int tabuleiro[10][10] = {0}; // inicializa tudo com 0
+
+    // ---- Navio 1: Vertical ----
+    int x_vertical = 1, y_vertical = 2; 
+    int tamanho_vertical = 4; 
+    for (int i = 0; i < tamanho_vertical; i++) {
+        tabuleiro[x_vertical + i][y_vertical] = 3;
+    }
+
+    // ---- Navio 2: Horizontal ----
+    int x_horizontal = 6, y_horizontal = 4; 
+    int tamanho_horizontal = 5; 
+    for (int j = 0; j < tamanho_horizontal; j++) {
+        tabuleiro[x_horizontal][y_horizontal + j] = 3;
+    }
+
+    // ---- Navio 3: Diagonal (↘) ----
+    int x_diag1 = 0, y_diag1 = 0;
+    int tamanho_diag1 = 4;
+    for (int k = 0; k < tamanho_diag1; k++) {
+        tabuleiro[x_diag1 + k][y_diag1 + k] = 3;
+    }
+
+    // ---- Navio 4: Diagonal (↙) ----
+    int x_diag2 = 0, y_diag2 = 9;
+    int tamanho_diag2 = 4;
+    for (int k = 0; k < tamanho_diag2; k++) {
+        tabuleiro[x_diag2 + k][y_diag2 - k] = 3;
+    }
+
+    // ---- Exibição do Tabuleiro Completo ----
+    printf("=== Tabuleiro 10x10 ===\n");
+    for (int i = 0; i < linhas; i++) {
+        for (int j = 0; j < colunas; j++) {
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
